@@ -6,6 +6,7 @@ class TodoForm extends React.Component {
     super(props);
     this.state = { input: '' };
   }
+  
 
   handleChange = (event) => {
     let todoValue = event.target.value;
@@ -16,11 +17,12 @@ class TodoForm extends React.Component {
     event.preventDefault();
     let value = this.state.input;
     this.props.addTodo(value);
+    this.formRef.reset();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} className={style.TodoForm} >
+      <form ref={(ref) => this.formRef = ref} onSubmit={this.handleSubmit} className={style.TodoForm} >
         <label>
           Add Task:
             <input type="text" value={this.state.value} onChange={this.handleChange} />
